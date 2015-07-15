@@ -1,0 +1,21 @@
+{
+  "name": "jsonld-rx",
+  "version": "0.0.0",
+  "description": "Rx wrapper for JSON-LD processing.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "Apache 2",
+  "dependencies": {
+    "JSONStream": "^1.0.4",
+    "highland": "^2.5.1",
+    "hyperquest": "^1.2.0",
+    "jsonld": "^0.3.22",
+    "lodash": "^3.10.0",
+    "lru-cache": "^2.6.5",
+    "rx": "^2.5.3",
+    "rx-node": "^1.0.1"
+  }
+}

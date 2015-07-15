@@ -1,0 +1,8 @@
+node_modules/
+tmp/
+.idea/
+gh-pages
+gh-pages/*
+dist/kaavio-dev-polyfills.bundle.js
+demo/lib/kaavio/kaavio-dev.bundle.js
+demo/lib/kaavio/kaavio-dev-polyfills.bundle.js
