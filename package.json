@@ -12,7 +12,7 @@
     "JSONStream": "^1.0.4",
     "highland": "^2.5.1",
     "hyperquest": "^1.2.0",
-    "jsonld": "^0.3.22",
+    "jsonld": "^0.3.23",
     "lodash": "^3.10.0",
     "lru-cache": "^2.6.5",
     "rx": "^2.5.3",
