@@ -1,13 +1,13 @@
 {
   "name": "jsonld-rx",
-  "version": "0.0.0",
+  "version": "1.0.0-alpha.0",
   "description": "Rx wrapper for JSON-LD processing.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "Apache 2",
+  "license": "Apache-2.0",
   "dependencies": {
     "JSONStream": "^1.0.4",
     "highland": "^2.5.1",
