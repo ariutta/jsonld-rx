@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "Apache-2.0",
+  "license": "BSD-3-Clause",
   "dependencies": {
     "JSONStream": "^1.0.4",
     "highland": "^2.5.1",
