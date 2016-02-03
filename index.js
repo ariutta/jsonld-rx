@@ -220,10 +220,8 @@ jsonld.expand = function(input, options, callback) {
         }
         expand(remoteDoc);
       };
-      var promise = options.documentLoader(input, done);
-      if(promise && 'then' in promise) {
-        promise.then(done.bind(null, null), done);
-      }
+      options.documentLoader(input, done);
+       
       return;
     }
     // nothing to load
@@ -413,10 +411,8 @@ jsonld.frame = function(input, frame, options, callback) {
         }
         doFrame(remoteDoc);
       };
-      var promise = options.documentLoader(frame, done);
-      if(promise && 'then' in promise) {
-        promise.then(done.bind(null, null), done);
-      }
+      options.documentLoader(frame, done);
+       
       return;
     }
     // nothing to load
@@ -5321,10 +5317,8 @@ function _retrieveContextUrls(input, options, callback) {
             }
           });
         };
-        var promise = documentLoader(url, done);
-        if(promise && 'then' in promise) {
-          promise.then(done.bind(null, null), done);
-        }
+        documentLoader(url, done);
+         
       }(queue[i]));
     }
   };

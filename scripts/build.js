@@ -1,5 +1,6 @@
 var falafel = require('falafel');
 var fs = require('fs');
+var grasp = require('grasp');
 var path = require('path');
 var Rx = require('rx-extra');
 
@@ -59,7 +60,6 @@ falafelRx(sourceString)
 
           // TODO get rid of all the code sections from jsonld.js that look like the following:
           /*
-          var promise = options.documentLoader(input, done);
           if(promise && 'then' in promise) {
             promise.then(done.bind(null, null), done);
           }
@@ -144,10 +144,12 @@ falafelRx(sourceString)
     var afterString = fs.readFileSync(path.join(__dirname, '..', 'lib', 'after.js'));
     outputChunks.push(afterString);
 
-    var outputString = outputChunks.join('\n\n');
+    var penultimateString = outputChunks.join('\n\n')
+      .replace(/var\ promise\ =\ /g, '');
       //.replace(/jsonld\.documentLoaders\.node/g, 'jsonld.documentLoaderCreator')
       //.replace(/var\ http\ \=\ require\('http'\);/g, '')
       //.replace(/http.STATUS_CODES/g, 'nodeStatusCodes');
+    var outputString = grasp.replace('squery', 'if!.test #promise', ' ', penultimateString);
     /*
     console.log('outputString');
     console.log(outputString);
