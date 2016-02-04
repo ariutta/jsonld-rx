@@ -16,9 +16,8 @@ function falafelRx(code, opts) {
   return subject;
 }
 
-var outputChunks = [];
 var beforeString = fs.readFileSync(path.join(__dirname, '..', 'lib', 'before.js'));
-outputChunks.push(beforeString);
+var afterString = fs.readFileSync(path.join(__dirname, '..', 'lib', 'after.js'));
 
 var neededFunctions = [
   'wrapper',
@@ -36,8 +35,8 @@ falafelRx(sourceString)
     return node.id && (node.id.name === 'wrapper') && node.init && node.init.body &&
       node.init.type === 'FunctionExpression' && node.init.body.body;
   })
-  .subscribe(function(node) {
-    outputChunks = outputChunks.concat(
+  .reduce(function(accumulator, node) {
+    accumulator = accumulator.concat(
       node.init.body.body
         .filter(function(item) {
           console.log('**********************************');
@@ -57,13 +56,6 @@ falafelRx(sourceString)
               return false;
             }
           }
-
-          // TODO get rid of all the code sections from jsonld.js that look like the following:
-          /*
-          if(promise && 'then' in promise) {
-            promise.then(done.bind(null, null), done);
-          }
-          //*/
 
           if (item.expression && item.expression.left) {
             var left = item.expression.left;
@@ -97,7 +89,6 @@ falafelRx(sourceString)
                 left.property && left.property.name === 'prototype') {
               return false;
             }
-            //jsonld.promises({api: jsonld.promises});
 
             if (left.object && left.object.object &&
                 left.object.object.name === 'jsonld' &&
@@ -138,24 +129,39 @@ falafelRx(sourceString)
           return item.source();
         })
     );
-  }, function(err) {
-    throw err;
-  }, function() {
-    var afterString = fs.readFileSync(path.join(__dirname, '..', 'lib', 'after.js'));
-    outputChunks.push(afterString);
 
-    var penultimateString = outputChunks.join('\n\n')
-      .replace(/var\ promise\ =\ /g, '');
+    return accumulator;
+  }, [beforeString])
+  .map(function(chunks) {
+    return chunks.concat([afterString]);
+  })
+  .map(function(chunks) {
+    return chunks.join('\n\n')
+  })
+  .map(function(outputString) {
+    return outputString.replace(/var\ promise\ =\ /g, '');
       //.replace(/jsonld\.documentLoaders\.node/g, 'jsonld.documentLoaderCreator')
       //.replace(/var\ http\ \=\ require\('http'\);/g, '')
       //.replace(/http.STATUS_CODES/g, 'nodeStatusCodes');
-    var outputString = grasp.replace('squery', 'if!.test #promise', ' ', penultimateString);
-    /*
+  })
+  .map(function(outputString) {
+    return grasp.replace('squery', 'if!.test #promise', ' ', outputString);
+  })
+  .map(function(outputString) {
+    return grasp.replace('squery',
+        'exp-statement!' +
+            '[expression.left.object.name=jsonld][expression.left.property.name=objectify]',
+        ' ',
+        outputString);
+  })
+  .subscribe(function(outputString) {
     console.log('outputString');
     console.log(outputString);
-    //*/
 
-    var destPath = path.join(__dirname, '..', 'index.js');
+    var destPath = path.join(__dirname, '..', 'auto-generated', 'jsonld.js');
     fs.writeFileSync(destPath, outputString, {encoding: 'utf8'});
+  }, function(err) {
+    throw err;
+  }, function() {
     console.log('completed');
   });
