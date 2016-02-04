@@ -1,6 +1,6 @@
 # jsonld-rx
 
-This is a work-in-progress. It will be an [RxJS](https://github.com/Reactive-Extensions/RxJS) wrapper for [jsonld.js](https://github.com/digitalbazaar/jsonld.js), but it currently is just a slimmed down version of jsonld.js with no RxJS wrapper.
+This is a work-in-progress. It will be an [RxJS](https://github.com/Reactive-Extensions/RxJS) wrapper for [jsonld.js](https://github.com/digitalbazaar/jsonld.js), but it is currently just a slimmed-down version of `jsonld.js`, without any `RxJS` integration.
 
 From pre-existing code, I stripped out any functionality not in the jsonld.js API and moved it into jsonld-rx-extra.
 
@@ -16,7 +16,7 @@ npm install
 
 ## Testing
 
-Clone the following two repos as sibling directories of the directory for your local jsonld-rx repo:
+Clone the following two repos as sibling directories of the directory for your local `jsonld-rx` repo:
 
 ```
 git clone https://github.com/json-ld/normalization.git
