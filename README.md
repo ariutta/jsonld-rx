@@ -23,4 +23,4 @@ git clone https://github.com/json-ld/normalization.git
 git clone https://github.com/json-ld/json-ld.org.git
 ```
 
-Then run the tests: `npm test`.
+Then run the tests: `npm test`
