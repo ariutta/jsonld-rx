@@ -9,6 +9,7 @@
   "author": "",
   "license": "BSD-3-Clause",
   "dependencies": {
+    "cache-service-cache-module": "^1.2.2",
     "falafel": "^1.2.0",
     "grasp": "^0.4.0",
     "jsonld": "git://github.com/ariutta/jsonld.js.git",
