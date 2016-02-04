@@ -12,9 +12,6 @@ TODO: It's working without a Node.js cache, but there's a problem with the super
 git clone https://github.com/ariutta/jsonld-rx.git
 cd jsonld-rx
 npm install
-mkdir auto-generated
-node ./scripts/build.js
-cp -r ./node_modules/jsonld/tests/ ./auto-generated/tests
 ```
 
 ## Testing
@@ -30,5 +27,5 @@ Then export the location of the jsonld.js file and run the tests:
 
 ```
 export JSDIR='../auto-generated'
-./node_modules/mocha/bin/mocha ./auto-generated/tests/test.js 
+npm test
 ```

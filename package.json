@@ -4,7 +4,9 @@
   "description": "Rx wrapper for JSON-LD processing.",
   "main": "index.js",
   "scripts": {
-    "postinstall": "node ./scripts/build.js"
+    "build": "node ./scripts/build.js",
+    "postinstall": "npm run build && mkdir auto-generated && cp -r ./node_modules/jsonld/tests/ ./auto-generated/tests",
+    "test": "./node_modules/mocha/bin/mocha ./auto-generated/tests/test.js"
   },
   "author": "",
   "license": "BSD-3-Clause",
