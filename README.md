@@ -16,16 +16,11 @@ npm install
 
 ## Testing
 
-Clone these two repos as sibling directories of your local jsonld-rx repo directory:
+Clone the following two repos as sibling directories of the directory for your local jsonld-rx repo:
 
 ```
 git clone https://github.com/json-ld/normalization.git
 git clone https://github.com/json-ld/json-ld.org.git
 ```
 
-Then export the location of the jsonld.js file and run the tests:
-
-```
-export JSDIR='../auto-generated'
-npm test
-```
+Then run the tests: `npm test`.

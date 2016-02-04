@@ -6,7 +6,7 @@
   "scripts": {
     "build": "node ./scripts/build.js",
     "postinstall": "mkdir auto-generated && npm run build && cp -r ./node_modules/jsonld/tests/ ./auto-generated/tests",
-    "test": "./node_modules/mocha/bin/mocha ./auto-generated/tests/test.js"
+    "test": "export JSDIR='../auto-generated' && ./node_modules/mocha/bin/mocha ./auto-generated/tests/test.js"
   },
   "author": "",
   "license": "BSD-3-Clause",
