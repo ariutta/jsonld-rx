@@ -24,3 +24,4 @@ git clone https://github.com/json-ld/json-ld.org.git
 ```
 
 Then run the tests: `npm test`
+If you're not on Windows, you can alternatively run the tests in color by running `npm run test-color`
