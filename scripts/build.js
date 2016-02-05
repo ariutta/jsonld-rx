@@ -39,8 +39,10 @@ falafelRx(sourceString)
     accumulator = accumulator.concat(
       node.init.body.body
         .filter(function(item) {
+/*
           console.log('**********************************');
           console.log(item.source());
+//*/
           if (item.argument && item.argument.name === 'jsonld') {
             return false;
           }
@@ -119,9 +121,6 @@ falafelRx(sourceString)
                 left.property && left.property.name === 'loadDocument') {
               return false;
             }
-
-            console.log('left');
-            console.log(left);
           }
           return item.source;
         })
@@ -155,13 +154,15 @@ falafelRx(sourceString)
         outputString);
   })
   .subscribe(function(outputString) {
+/*
     console.log('outputString');
     console.log(outputString);
+//*/
 
     var destPath = path.join(__dirname, '..', 'auto-generated', 'jsonld.js');
     fs.writeFileSync(destPath, outputString, {encoding: 'utf8'});
   }, function(err) {
     throw err;
   }, function() {
-    console.log('completed');
+    console.log('Build completed');
   });
