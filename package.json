@@ -6,8 +6,8 @@
   "scripts": {
     "build": "node ./scripts/build.js",
     "postinstall": "node ./scripts/mkdir_auto-generated && node ./scripts/cp_-r_node_modules_jsonld_tests && npm run build",
-    "test": "node ./scripts/test",
-    "test-color": "export JSDIR='../auto-generated' && mocha ./auto-generated/tests/test.js"
+    "test-windows": "node ./scripts/test",
+    "test": "export JSDIR='../auto-generated' && mocha ./auto-generated/tests/test.js"
   },
   "author": "",
   "license": "BSD-3-Clause",
