@@ -5,14 +5,15 @@
   "main": "index.js",
   "scripts": {
     "build": "node ./scripts/build.js",
-    "postinstall": "mkdir auto-generated && npm run build && cp -r ./node_modules/jsonld/tests/ ./auto-generated/tests",
-    "test": "export JSDIR='../auto-generated' && ./node_modules/mocha/bin/mocha ./auto-generated/tests/test.js"
+    "postinstall": "node ./scripts/mkdir_auto-generated && node ./scripts/cp_-r_node_modules_jsonld_tests && npm run build",
+    "test": "mocha ./auto-generated/tests/test.js"
   },
   "author": "",
   "license": "BSD-3-Clause",
   "dependencies": {
     "cache-service-cache-module": "^1.2.2",
     "falafel": "^1.2.0",
+    "fs-extra": "^0.26.5",
     "grasp": "^0.4.0",
     "jsonld": "git://github.com/ariutta/jsonld.js.git",
     "jsonld-url-parse": "git://github.com/ariutta/jsonld-url-parse.git",
@@ -20,6 +21,7 @@
     "remove-dot-segments": "git://github.com/ariutta/remove-dot-segments.git",
     "rx-extra": "^1.0.2",
     "rx-lite": "4.0.7",
+    "shelljs": "^0.6.0",
     "superagent": "^1.7.2",
     "superagent-cache": "^1.3.3"
   },

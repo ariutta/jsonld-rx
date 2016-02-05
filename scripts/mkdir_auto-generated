@@ -1,0 +1,2 @@
+var fs = require('fs-extra');
+fs.mkdirsSync(__dirname + '/../auto-generated');

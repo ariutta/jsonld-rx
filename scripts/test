@@ -1,0 +1,26 @@
+var spawn = require('child_process').spawn;
+
+var mochaPath = './node_modules/mocha/bin/mocha';
+var testPath = './auto-generated/tests/test.js';
+
+process.env.JSDIR = '../auto-generated';
+
+var mocha = spawn(
+    'node',
+    [
+      mochaPath,
+      testPath
+    ],
+    {
+      cwd: __dirname + '/../',
+      env: process.env
+    });
+mocha.stdout.pipe(process.stdout);
+
+mocha.stderr.on('data', (data) => {
+  console.log(`mocha stderr: ${data}`);
+});
+
+mocha.on('error', (err) => {
+  throw err;
+});
