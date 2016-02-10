@@ -1,1 +1,1 @@
-main.exports = require('auto-generated/jsonld.js');
+module.exports = require('./auto-generated/jsonld.js');

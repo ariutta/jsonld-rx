@@ -2,7 +2,7 @@ var falafel = require('falafel');
 var fs = require('fs');
 var grasp = require('grasp');
 var path = require('path');
-var Rx = require('rx-extra');
+var Rx = require('rx');
 
 function falafelRx(code, opts) {
   opts = opts || {};
@@ -147,12 +147,15 @@ falafelRx(sourceString)
     return grasp.replace('squery', 'if!.test #promise', ' ', outputString);
   })
   .map(function(outputString) {
+    return grasp.replace('squery', 'Statement! > AssignmentExpression #DocumentCache', ' ', outputString);
+  })
+  .map(function(outputString) {
     return grasp.replace('squery',
         'exp-statement!' +
             '[expression.left.object.name=jsonld][expression.left.property.name=objectify]',
         ' ',
         outputString);
-  })
+  } )
   .subscribe(function(outputString) {
 /*
     console.log('outputString');
